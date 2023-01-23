@@ -2,6 +2,7 @@ package com.example.backend;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Resource;
 
@@ -15,12 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Resource
 public class MemoryEaterResource {
 	 @GetMapping
-	    public ResponseEntity<List<Integer>> findAll() {
+	    public ResponseEntity<List<Double>> memoryEater() {
 		 System.out.println("Entrou aqui");
-		 List<Integer> list = new ArrayList<>();
+		 Random generator = new Random();
+		 List<Double> list = new ArrayList<>();
 	       for(int i = 0; i<1000; i++) {
 	    	   for(int j = 0; j < 1000; j++) {
-		    	   list.add(Math.round(i + j));
+		    	   list.add(generator.nextDouble() * i * j);
 	    	   }
 	       }
 	       return (ResponseEntity.ok(list));
