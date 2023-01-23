@@ -1,13 +1,15 @@
-package com.videnci.exercicio5jpa;
+package com.example.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Exercicio5JpaApplication {
+public class BackEndApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Exercicio5JpaApplication.class, args);
+
+		SpringApplication.run(BackEndApplication.class, args);
+		System.out.println("Hello World!");
 	}
 
 }

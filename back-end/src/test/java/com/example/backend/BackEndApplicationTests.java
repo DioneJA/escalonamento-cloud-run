@@ -1,10 +1,10 @@
-package com.videnci.exercicio5jpa;
+package com.example.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Exercicio5JpaApplicationTests {
+class BackEndApplicationTests {
 
 	@Test
 	void contextLoads() {
