@@ -1,4 +1,7 @@
-FROM openjdk:8-jdk-alpine
-ARG JAR FILE=taget/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar", "/app.jar"]
+FROM openjdk
+
+WORKDIR /app
+
+COPY target/back-end-0.0.1-SNAPSHOT.jar /app/spring-app.jar
+
+ENTRYPOINT ["java","-jar", "spring-app.jar"]
