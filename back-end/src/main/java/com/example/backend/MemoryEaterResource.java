@@ -19,8 +19,8 @@ public class MemoryEaterResource {
 	    public ResponseEntity<List<Double>> memoryEater() {
 		 Random generator = new Random();
 		 List<Double> list = new ArrayList<>();
-	       for(int i = 1; i<1050; i++) {
-	    	   for(int j = 1; j < 1050; j++) {
+	       for(int i = 1; i<1000; i++) {
+	    	   for(int j = 1; j < 1000; j++) {
 		    	   list.add(generator.nextDouble() * i * j);
 	    	   }
 	       }
