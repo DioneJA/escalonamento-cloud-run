@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class MemoryEaterResource {
 	 @GetMapping
 	    public ResponseEntity<List<Double>> memoryEater() {
-		 System.out.println("Entrou aqui");
 		 Random generator = new Random();
 		 List<Double> list = new ArrayList<>();
 	       for(int i = 0; i<1000; i++) {
