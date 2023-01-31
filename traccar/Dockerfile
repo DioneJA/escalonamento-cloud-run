@@ -1,24 +1,16 @@
-FROM alpine:3.16
 
-ENV TRACCAR_VERSION 5.3
+FROM traccar/traccar:5-alpine
+RUN apk --no-cache add curl gettext
 
-ENV DATABASE_IP=<seu-endereco-publico>
-ENV DATABASE_NAME=<nome-da-sua-database>
-ENV DATABASE_USERNAME=<nome-de-usuario-da-database>
-ENV DATABASE_PASSWORD=<senha-da-database>
+ENV DATABASE_IP ""
+ENV DATABASE_NAME ""
+ENV DATABASE_USERNAME ""
+ENV DATABASE_PASSWORD ""
+ENV DATABASE_PORT ""
 
-WORKDIR /opt/traccar
+COPY entrypoint.sh /entrypoint.sh
+COPY ./traccar.env.xml /opt/traccar/conf/traccar.env.xml
 
-RUN set -ex && \
-    apk add --no-cache --no-progress openjdk11-jre-headless wget && \
-    wget -qO /tmp/traccar.zip https://github.com/traccar/traccar/releases/download/v$TRACCAR_VERSION/traccar-other-$TRACCAR_VERSION.zip && \
-    unzip -qo /tmp/traccar.zip -d /opt/traccar && \
-    rm /tmp/traccar.zip && \
-    apk del wget
-       
-COPY traccar.xml conf/traccar.xml
+CMD ["java", "-Xms1g", "-Xmx1g", "-Djava.net.preferIPv4Stack=true", "--add-opens", "jdk.zipfs/jdk.nio.zipfs=ALL-UNNAMED", "--add-opens", "java.base/jdk.internal.loader=ALL-UNNAMED", "-jar", "tracker-server.jar", "/opt/traccar/conf/traccar.xml"]
 
-
-ENTRYPOINT ["java", "-Xms1g", "-Xmx1g", "-Djava.net.preferIPv4Stack=true"]
-
-CMD ["-jar", "tracker-server.jar", "conf/traccar.xml"]
+ENTRYPOINT ["/entrypoint.sh"]
